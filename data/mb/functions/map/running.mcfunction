@@ -11,8 +11,8 @@ setworldspawn 967 4 1018
 spawnpoint @a 967 4 1018
 team join lobby @a[x=967,y=4,z=1018,distance=..10]
 gamemode adventure @a[team=lobby]
-effect give @a[team=lobby] instant_health
-effect give @a[team=lobby] saturation 1
+effect give @a[team=lobby] instant_health 5 0 true
+effect give @a[team=lobby] saturation 5 0 true
 scoreboard players add running Timer 1
 execute if score running Timer matches 1000.. run scoreboard players set running Timer 0
 

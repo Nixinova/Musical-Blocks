@@ -8,7 +8,7 @@
 #---------------------------------#
 
 clear @a[team=lobby]
-gamemode survival @a[team=lobby]
+gamemode adventure @a[team=lobby]
 
 scoreboard players reset starting Map
 scoreboard players set playing Map 1
