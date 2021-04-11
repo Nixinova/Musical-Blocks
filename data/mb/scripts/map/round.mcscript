@@ -1,0 +1,105 @@
+#file: ./
+#---------------------------------#
+#                                 #
+#        MUSICAL BLOCKS v2        #
+#          by Nixinova            #
+#                                 #
+#         Round commands          #
+#                                 #
+#---------------------------------#
+
+const map = 'score randomiser Map matches'
+const colour = 'score colour Map matches'
+const area = '1058 5 978 1029 5 949'
+const fill = 'fill 1058 5 978 1029 5 949 glass replace'
+
+/* 
+  Round start
+*/
+#file: ./round_start
+
+/title @a[team=playing] title ""
+/clear @a[team=playing]
+/scoreboard players add Round MB 1
+/scoreboard players reset * Timer
+/scoreboard players reset * Colour
+/scoreboard players reset Alive MB
+/execute as @a[team=playing] run scoreboard players add Alive MB 1
+
+# Set the round's colours
+modal set_colours(map_id, col1, col2, col3, col4, col5, col6) {
+  /execute if $(map) $(map_id) if $(colour) 1 run scoreboard players set $(col1) Colour 1
+  /execute if $(map) $(map_id) if $(colour) 2 run scoreboard players set $(col2) Colour 1
+  /execute if $(map) $(map_id) if $(colour) 3 run scoreboard players set $(col3) Colour 1
+  /execute if $(map) $(map_id) if $(colour) 4 run scoreboard players set $(col4) Colour 1
+  /execute if $(map) $(map_id) if $(colour) 5 run scoreboard players set $(col5) Colour 1
+  /execute if $(map) $(map_id) if $(colour) 6 run scoreboard players set $(col6) Colour 1
+}
+set_colours('1' , 'brown', 'green', 'magenta', 'red', 'purple', 'blue')
+set_colours('2' , 'yellow', 'brown', 'blue', 'green', 'red', 'magenta')
+set_colours('3' , 'lime', 'white', 'black', 'orange', 'light_gray', 'red')
+set_colours('4' , 'pink', 'pink', 'blue', 'blue', 'orange', 'lime')
+set_colours('5' , 'black', 'blue', 'light_blue', 'red', 'magenta', 'lime')
+set_colours('6' , 'green', 'magenta', 'orange', 'red', 'brown', 'pink')
+set_colours('7' , 'black', 'light_blue', 'magenta', 'yellow', 'brown', 'light_gray')
+set_colours('8' , 'gray', 'cyan', 'white', 'orange', 'light_blue', 'red')
+set_colours('9' , 'lime', 'cyan', 'brown', 'purple', 'black', 'orange')
+set_colours('10', 'green', 'gray', 'magenta', 'white', 'light_gray', 'pink')
+set_colours('11', 'black', 'red', 'yellow', 'white', 'purple', 'light_blue')
+set_colours('12', 'pink', 'purple', 'magenta', 'magenta', 'blue', 'blue')
+set_colours('13', 'yellow', 'lime', 'black', 'red', 'white', 'orange')
+
+# Give colour to each player
+modal announce_colour(colour, chat_colour) {
+  for(1, 9) {
+    /execute if score $(colour) Colour matches 1 run give @a[team=playing] $(colour)_wool{_NoStack:$(i)}
+  }
+  /execute if score $(colour) Colour matches 1 run tellraw @a[team=playing] [$(MUSICAL_BLOCKS),{"text":" Selected colour: ","bold":false},{"text":"$(colour)","color":"$(chat_colour)","bold":false}]
+}
+announce_colour('black', 'black')
+announce_colour('gray', 'dark_gray')
+announce_colour('light_gray', 'gray')
+announce_colour('white', 'white')
+announce_colour('brown', 'gold')
+announce_colour('red', 'red')
+announce_colour('orange', 'gold')
+announce_colour('yellow', 'yellow')
+announce_colour('magenta', 'light_purple')
+announce_colour('purple', 'dark_purple')
+announce_colour('pink', 'light_purple')
+announce_colour('cyan', 'dark_aqua')
+announce_colour('lime', 'green')
+announce_colour('green', 'dark_green')
+announce_colour('blue', 'dark_blue')
+announce_colour('light_blue', 'aqua')
+
+/*
+  Round mid
+*/
+#file: ./round_mid
+
+modal replace_colours(map_id, col1, col2, col3, col4, col5, col6) {
+  /execute if $(map) $(map_id) if $(colour) 1 run fill $(area) glass replace $(col1)_wool
+  /execute if $(map) $(map_id) if $(colour) 2 run fill $(area) glass replace $(col2)_wool
+  /execute if $(map) $(map_id) if $(colour) 3 run fill $(area) glass replace $(col3)_wool
+  /execute if $(map) $(map_id) if $(colour) 4 run fill $(area) glass replace $(col4)_wool
+  /execute if $(map) $(map_id) if $(colour) 5 run fill $(area) glass replace $(col5)_wool
+  /execute if $(map) $(map_id) if $(colour) 6 run fill $(area) glass replace $(col6)_wool
+}
+replace_colours('1' , 'brown', 'green', 'magenta', 'red', 'purple', 'blue')
+replace_colours('2' , 'yellow', 'brown', 'blue', 'green', 'red', 'magenta')
+replace_colours('3' , 'lime', 'white', 'black', 'orange', 'light_gray', 'red')
+replace_colours('4' , 'pink', 'pink', 'blue', 'blue', 'orange', 'lime')
+replace_colours('5' , 'black', 'blue', 'light_blue', 'red', 'magenta', 'lime')
+replace_colours('6' , 'green', 'magenta', 'orange', 'red', 'brown', 'pink')
+replace_colours('7' , 'black', 'light_blue', 'magenta', 'yellow', 'brown', 'light_gray')
+replace_colours('8' , 'gray', 'cyan', 'white', 'orange', 'light_blue', 'red')
+replace_colours('9' , 'lime', 'cyan', 'brown', 'purple', 'black', 'orange')
+replace_colours('10', 'green', 'gray', 'magenta', 'white', 'light_gray', 'pink')
+replace_colours('11', 'black', 'red', 'yellow', 'white', 'purple', 'light_blue')
+replace_colours('12', 'pink', 'purple', 'magenta', 'magenta', 'blue', 'blue')
+replace_colours('13', 'yellow', 'lime', 'black', 'red', 'white', 'orange')
+
+/fill $(area) air replace #wool
+
+/kill @e[type=item]

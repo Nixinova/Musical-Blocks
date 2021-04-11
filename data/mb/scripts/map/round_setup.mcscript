@@ -1,0 +1,23 @@
+#---------------------------------#
+#                                 #
+#        MUSICAL BLOCKS v2        #
+#          by Nixinova            #
+#                                 #
+#        Map setup commands       #
+#                                 #
+#---------------------------------#
+
+/kill @e[type=item]
+
+# Mark as in-game (playing=1)
+/scoreboard players set playing Map 1
+
+# Load structure
+for (1, 13, map_id) {
+  /execute if score randomiser Map matches $(map_id) run setblock 1026 4 946 structure_block{mode:"LOAD",name:"mb:maps/map$(map_id)",posX:3,posY:1,posZ:3}
+}
+/setblock 1026 5 946 redstone_block
+/setblock 1026 5 946 air
+
+# Start
+/function mb:map/round_start
