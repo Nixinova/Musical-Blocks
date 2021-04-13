@@ -1,0 +1,19 @@
+#---------------------------------#
+#                                 #
+#        MUSICAL BLOCKS v2        #
+#          by Nixinova            #
+#                                 #
+#   Starting countdown commands   #
+#                                 #
+#---------------------------------#
+
+_const starting_in = '{"text":" Starting in ","color":"white","bold":false}'
+_const timer = 'score starting Timer matches'
+_const target = '@a[team=lobby]'
+
+execute if $(timer) 10 run tellraw $(target) [$(MUSICAL_BLOCKS),$(starting_in),{"text":"5","color":"dark_green"}]
+execute if $(timer) 30 run tellraw $(target) [$(MUSICAL_BLOCKS),$(starting_in),{"text":"4","color":"dark_green"}]
+execute if $(timer) 50 run tellraw $(target) [$(MUSICAL_BLOCKS),$(starting_in),{"text":"3","color":"dark_green"}]
+execute if $(timer) 70 run tellraw $(target) [$(MUSICAL_BLOCKS),$(starting_in),{"text":"2","color":"dark_green"}]
+execute if $(timer) 90 run tellraw $(target) [$(MUSICAL_BLOCKS),$(starting_in),{"text":"1","color":"dark_green"}]
+execute if $(timer) 110.. run function mb:map/game_start
