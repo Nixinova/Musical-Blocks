@@ -1,6 +1,6 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #     Always running commands     #
@@ -14,16 +14,19 @@ team join lobby @a[x=967,y=4,z=1018,distance=..10]
 gamemode adventure @a[team=lobby]
 effect give @a[team=lobby] instant_health 5 0 true
 effect give @a[team=lobby] saturation 5 0 true
+effect give @a[team=lobby] fire_resistance 1 0 true
 scoreboard players add running Timer 1
 execute if score running Timer matches 1000.. run scoreboard players set running Timer 0
+tp @a[x=968,y=9,z=1018,distance=..2] 968 5 1018
 
 # Death
-team join dead @a[scores={Health=..17}]
-execute if entity @a[scores={Health=..17}] run tellraw @a ["",{"selector":"@a[scores={Health=..17}]"},{"text":" burned to death","color":"yellow"}]
+_const deadPlayers = '@a[scores={Health=..17}]'
+team join dead $(deadPlayers)
+execute if entity $(deadPlayers) run tellraw @a ["",{"selector":"$(deadPlayers)"},{"text":" has been eliminated","color":"gold"}]
 gamemode spectator @a[team=dead]
 effect give @a[team=dead] instant_health
-execute store result score alive Players if entity @e[team=playing]
-execute if score online Players matches 2.. if score alive Players matches ..1 if score Round MB matches 1.. run function mb:map/game_end
+execute store result score Alive Players if entity @e[team=playing]
+execute if score Online Players matches 2.. if score Alive Players matches ..1 if score Round MB matches 1.. run function mb:map/game_end
 
 # Game start
 execute if score starting Map matches 1.. run function mb:map/countdown

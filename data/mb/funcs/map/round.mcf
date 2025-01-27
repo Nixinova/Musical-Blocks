@@ -1,12 +1,14 @@
 #file: ./
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #         Round commands          #
 #                                 #
 #---------------------------------#
+
+_const MUSICAL_BLOCKS = '{"text":"[","color":"white","bold":true},{"text":"M","color":"dark_blue","bold":true},{"text":"U","color":"dark_aqua","bold":true},{"text":"S","color":"dark_purple","bold":true},{"text":"I","color":"gray","bold":true},{"text":"C","color":"blue","bold":true},{"text":"A","color":"aqua","bold":true},{"text":"L ","color":"light_purple","bold":true},{"text":"B","color":"dark_green","bold":true},{"text":"L","color":"dark_red","bold":true},{"text":"O","color":"gold","bold":true},{"text":"C","color":"dark_gray","bold":true},{"text":"K","color":"green","bold":true},{"text":"S","color":"red","bold":true},{"text":"]","color":"white","bold":true}'
 
 _const map = 'score randomiser Map matches'
 _const colour = 'score colour Map matches'
@@ -49,8 +51,8 @@ _set_colours('13', 'yellow', 'lime', 'black', 'red', 'white', 'orange')
 
 # Give colour to each player
 _modal announce_colour (colour, chat_colour) {
-  _for(1, 9) {
-    execute if score $(colour) Colour matches 1 run give @a[team=playing] $(colour)_wool{_NoStack:$(i)}
+  _for(0, 8) {
+    execute if score $(colour) Colour matches 1 run item replace entity @a[team=playing] hotbar.$(i) with $(colour)_wool
   }
   execute if score $(colour) Colour matches 1 run tellraw @a[team=playing] [$(MUSICAL_BLOCKS),{"text":" Selected colour: ","bold":false},{"text":"$(colour)","color":"$(chat_colour)","bold":false}]
 }

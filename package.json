@@ -1,7 +1,7 @@
 {
   "name": "@nixinova/musical-blocks",
-  "version": "3.1",
-  "description": "Musical Blocks / Block Party minigame in vanilla Minecraft",
+  "version": "3.2",
+  "description": "Data pack for playing the Musical Blocks minigame in vanilla Minecraft",
   "author": "Nixinova (https://nixinova.com)",
   "private": true,
   "scripts": {

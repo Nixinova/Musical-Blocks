@@ -1,6 +1,7 @@
 {
     "pack": {
-        "pack_format": 6,
-        "description": "Musical Blocks v3.1 data pack for Minecraft 1.16 by Nixinova."
+        "pack_format": 45,
+        "supported_formats": [45, 63],
+        "description": "Musical Blocks v3.2 for Minecraft 1.21 - data pack by Nixinova."
     }
 }

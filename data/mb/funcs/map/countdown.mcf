@@ -1,11 +1,13 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #   Starting countdown commands   #
 #                                 #
 #---------------------------------#
+
+_const MUSICAL_BLOCKS = '{"text":"[","color":"white","bold":true},{"text":"M","color":"dark_blue","bold":true},{"text":"U","color":"dark_aqua","bold":true},{"text":"S","color":"dark_purple","bold":true},{"text":"I","color":"gray","bold":true},{"text":"C","color":"blue","bold":true},{"text":"A","color":"aqua","bold":true},{"text":"L ","color":"light_purple","bold":true},{"text":"B","color":"dark_green","bold":true},{"text":"L","color":"dark_red","bold":true},{"text":"O","color":"gold","bold":true},{"text":"C","color":"dark_gray","bold":true},{"text":"K","color":"green","bold":true},{"text":"S","color":"red","bold":true},{"text":"]","color":"white","bold":true}'
 
 _const starting_in = '{"text":" Starting in ","color":"white","bold":false}'
 _const timer = 'score starting Timer matches'

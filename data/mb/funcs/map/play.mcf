@@ -1,16 +1,16 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #   Game initialising commands    #
 #                                 #
 #---------------------------------#
 
-scoreboard players reset online Players
-execute as @a run scoreboard players add online Players 1
-_if ('score online Players matches 2..') {
+scoreboard players reset Online Players
+execute as @a run scoreboard players add Online Players 1
+_if ('score Online Players matches 2..') {
   scoreboard players reset starting Timer
   scoreboard players set starting Map 1
 _}
-execute unless score online Players matches 2.. run tellraw @p [{"text":"Not enough players!","color":"red"}]
+execute unless score Online Players matches 2.. run tellraw @p [{"text":"Not enough players!","color":"red"}]

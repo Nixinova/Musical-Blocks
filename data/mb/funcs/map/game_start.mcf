@@ -1,6 +1,6 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #      Game starting commands     #
@@ -16,13 +16,19 @@ scoreboard players reset starting Map
 scoreboard players set playing Map 1
 scoreboard players set Round MB 0
 scoreboard players reset @a Dead
-scoreboard objectives setdisplay sidebar MB
+scoreboard objectives setdisplay sidebar
 
 # Move players to game map
 spreadplayers 1044 964 3 14 false @a[team=lobby]
-stopsound @a
-execute as @a at @s run playsound minecraft:music_disc.stal master @a
 team join playing @a[team=lobby]
 
-# Setup round
+# Music
+stopsound @a
+execute if score number RNG_77 matches 1 run execute as @a at @s run playsound minecraft:music_disc.stal master @a
+execute if score number RNG_77 matches 2 run execute as @a at @s run playsound minecraft:music_disc.blocks master @a
+execute if score number RNG_77 matches 3 run execute as @a at @s run playsound minecraft:music_disc.chirp master @a
+execute if score number RNG_77 matches 4 run execute as @a at @s run playsound minecraft:music_disc.pigstep master @a
+execute if score number RNG_77 matches 5 run execute as @a at @s run playsound minecraft:music_disc.otherside master @a
+
+# Set up round
 function mb:map/round_setup

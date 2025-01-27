@@ -1,6 +1,6 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #      Game ending commands       #
@@ -8,8 +8,11 @@
 #---------------------------------#
 
 # Declare winner
-title @a title [{"selector":"@a[team=playing]"}]
-title @a subtitle [{"text":" has won!","color":"green"}]
+_if ('entity @a[team=playing]') {
+  title @a title [{"selector":"@a[team=playing]"}]
+  title @a subtitle [{"text":" has won!","color":"green"}]
+  tellraw @a [{"selector":"@a[team=playing]"}, {"text":" has won!","color":"green"}]
+}
 
 # Update scoreboards
 scoreboard players add @a[team=playing] Wins 1
@@ -21,6 +24,6 @@ scoreboard objectives setdisplay sidebar Wins
 
 # Move players to lobby
 clear @a
-tp @a 967 5 1018
+tp @a 968 5 1018
 team join lobby @a
 gamemode adventure @a[team=lobby]

@@ -1,11 +1,13 @@
 #---------------------------------#
 #                                 #
-#        MUSICAL BLOCKS v2        #
+#       MUSICAL BLOCKS v3.2       #
 #          by Nixinova            #
 #                                 #
 #       World setup commands      #
 #                                 #
 #---------------------------------#
+
+_const version = "3.2"
 
 tellraw @a "If the map has not been set up properly, please run the command again."
 
@@ -13,6 +15,7 @@ tellraw @a "If the map has not been set up properly, please run the command agai
 setworldspawn 968 5 1018
 spawnpoint @a 968 5 1018
 tp @a 968 5 1018
+clear @a
 
 # Teams
 team add lobby
@@ -24,15 +27,21 @@ team add dead
 team modify dead color red
 team modify playing friendlyFire false
 
+team join lobby @a
+
 # Scoreboards
 scoreboard objectives add Timer dummy "Timer"
 scoreboard objectives add Dead deathCount "Dead"
 scoreboard objectives add Health health "Health"
-scoreboard objectives add MB dummy {"text":"§1M§3U§5S§7I§9C§bA§dL §2B§4L§6O§8C§aK§cS§r"}
+scoreboard objectives add MB dummy "MB"
 scoreboard objectives add Map dummy "Map"
 scoreboard objectives add Wins dummy "§aWins"
 scoreboard objectives add Players dummy "Players"
 scoreboard objectives add Colour dummy "Colour"
+
+scoreboard players reset @a
+scoreboard objectives setdisplay sidebar Wins
+scoreboard objectives setdisplay below_name Wins
 
 # Command blocks
 setblock 965 4 1041 repeating_command_block{Command:"function mb:map/running",auto:true}
@@ -53,10 +62,10 @@ fill 962 3 1012 967 3 1017 redstone_lamp
 fill 973 3 1024 969 3 1019 redstone_lamp
 fill 969 3 1017 973 3 1012 redstone_lamp
 fill 973 2 1012 962 2 1024 redstone_block
-setblock 961 5 1018 player_wall_head[facing=east]{SkullOwner:{Name:"Nixinova"}}
-setblock 961 5 1019 birch_wall_sign[facing=east]{Text2:'"§1M§3U§5S§7I§9C§bA§dL"',Text3:'"§2B§4L§6O§8C§aK§cS"'}
-setblock 961 5 1017 birch_wall_sign[facing=east]{Text2:'{"text":"v3.0","color":"red"}'}
-setblock 974 5 1018 birch_wall_sign[facing=west]{Text1:'{"color":"green","clickEvent":{"action":"run_command","value":"function mb:map/play"},"text":"=========================="}',Text2:'{"bold":true,"color":"green","text":"Start"}',Text3:'{"bold":true,"color":"green","text":"Game"}',Text4:'{"color":"green","text":"=========================="}'}
+setblock 961 5 1018 player_wall_head[facing=east]{profile:{name:"Nixinova"}}
+setblock 961 5 1019 birch_wall_sign[facing=east]{front_text:{messages:['""','"§1M§3U§5S§7I§9C§bA§dL"','"§2B§4L§6O§8C§aK§cS"','""'],has_glowing_text:true}}
+setblock 961 5 1017 birch_wall_sign[facing=east]{front_text:{messages:['""','""','{"text":"v$(version)","color":"red"}','""'],has_glowing_text:true}}
+setblock 974 5 1018 birch_wall_sign[facing=west]{front_text:{messages:['{"color":"green","clickEvent":{"action":"run_command","value":"function mb:map/play"},"text":"=========================="}','{"bold":true,"color":"green","text":"Start"}','{"bold":true,"color":"green","text":"Game"}','{"color":"green","text":"=========================="}']}}
 setblock 976 4 1018 command_block{Command:"function mb:map/play"}
 setblock 974 4 1018 stone_button[facing=west]
 
@@ -101,3 +110,7 @@ execute unless score #const2 RNG_77 matches 1.. run scoreboard players set #cons
 scoreboard players add #prev_number RNG_77 0
 scoreboard players set #m1 RNG_77 -1
 scoreboard players add #clock_time RNG_77 1
+
+# Force refresh settings by having dummy game
+function mb:map/game_start
+stopsound @a
