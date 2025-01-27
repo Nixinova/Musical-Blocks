@@ -1,3 +1,4 @@
-# Compiled
-functions/
-mcscripts/
+node_modules
+
+temp/
+dist/

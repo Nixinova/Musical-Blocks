@@ -1,0 +1,23 @@
+{
+  "name": "@nixinova/musical-blocks",
+  "version": "3.1",
+  "description": "Musical Blocks / Block Party minigame in vanilla Minecraft",
+  "author": "Nixinova (https://nixinova.com)",
+  "private": true,
+  "scripts": {
+    "compile": "node compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nixinova/Musical-Blocks.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nixinova/Musical-Blocks/issues"
+  },
+  "homepage": "https://www.nixinova.com/musical-blocks",
+  "devDependencies": {
+    "glob": "^8.1.0",
+    "mcscript": "^0.2.3"
+  }
+}
